@@ -1,0 +1,35 @@
+{% extends 'dashboard/layout.html' %}
+{% load django_bootstrap5 %}
+
+{% block tabs %}
+<ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard:wenwu_list' %}">列表</a>
+    </li>
+
+    {% if object %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard:wenwu_create' %}">新增</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page">编辑</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page">新增</a>
+    </li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+
+{% block box %}
+<form action="" method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="保存" button_class="btn-success" %}
+    {% bootstrap_button button_type="reset" content="重置" button_class="btn-secondary" %}
+</form>
+{% endblock %}
+
+
